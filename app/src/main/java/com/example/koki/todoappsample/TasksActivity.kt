@@ -1,6 +1,7 @@
 package com.example.koki.todoappsample
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 
 
 class TasksActivity : AppCompatActivity() {
@@ -19,6 +21,13 @@ class TasksActivity : AppCompatActivity() {
         setContentView(R.layout.tasks_activity)
         setupToolbar()
         setupNavigationDrawer()
+        setUpFav()
+    }
+
+    private fun setUpFav() {
+        val fab = findViewById<FloatingActionButton>(R.id.fab_add_task)
+        fab.setImageResource(R.drawable.ic_add)
+        fab.setOnClickListener { Log.i("myapp", "clickされたよ") }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
