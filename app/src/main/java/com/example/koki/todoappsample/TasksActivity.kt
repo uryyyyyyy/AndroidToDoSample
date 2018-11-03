@@ -7,14 +7,10 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
 import com.example.koki.todoappsample.databinding.TasksActivityBinding
-import java.util.*
-
 
 class TasksActivity : AppCompatActivity(), TasksNavigator {
 
@@ -32,18 +28,6 @@ class TasksActivity : AppCompatActivity(), TasksNavigator {
         binding.viewmodel = vm
         setupToolbar()
         setupNavigationDrawer()
-        setupListView()
-    }
-
-    private fun setupListView() {
-        val recyclerView = findViewById<RecyclerView>(R.id.tasks_list)
-        val lm = LinearLayoutManager(this)
-        val adap = TasksAdapter(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"))
-        recyclerView.apply {
-            setHasFixedSize(true)
-            layoutManager = lm
-            adapter = adap
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
