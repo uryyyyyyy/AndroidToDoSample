@@ -1,7 +1,8 @@
 package com.example.koki.todoappsample
 
+import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -9,25 +10,25 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
+import com.example.koki.todoappsample.databinding.TasksActivityBinding
 
 
-class TasksActivity : AppCompatActivity() {
+class TasksActivity : AppCompatActivity(), TasksNavigator {
+
+    override fun addNewTask() {
+        val intent = Intent(this, AddEditTaskActivity::class.java)
+        startActivityForResult(intent, 1)
+    }
 
     private var mDrawerLayout: DrawerLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.tasks_activity)
+        val binding = DataBindingUtil.setContentView<TasksActivityBinding>(this, R.layout.tasks_activity)
+        val vm = TasksViewModel(this)
+        binding.viewmodel = vm
         setupToolbar()
         setupNavigationDrawer()
-        setUpFav()
-    }
-
-    private fun setUpFav() {
-        val fab = findViewById<FloatingActionButton>(R.id.fab_add_task)
-        fab.setImageResource(R.drawable.ic_add)
-        fab.setOnClickListener { Log.i("myapp", "clickされたよ") }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
