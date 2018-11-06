@@ -12,3 +12,5 @@ class TasksViewModel(private val navigator: TasksNavigator) {
     val empty = false
     var items: ObservableField<List<String>> = ObservableField(Arrays.asList("11", "22", "3", "4", "5", "6", "7", "8", "9", "10"))
 }
+
+//baseobservable

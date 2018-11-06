@@ -7,6 +7,8 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.MenuItem
@@ -28,6 +30,16 @@ class TasksActivity : AppCompatActivity(), TasksNavigator {
         binding.viewmodel = vm
         setupToolbar()
         setupNavigationDrawer()
+        setUpRecycler(vm.items.get()!!)
+    }
+
+    private fun setUpRecycler(items: List<String>) {
+        val recyclerView = findViewById<RecyclerView>(R.id.tasks_list)
+        val a = TasksAdapter(items)
+        recyclerView.adapter = a
+        recyclerView.setHasFixedSize(true)
+        val lm = LinearLayoutManager(recyclerView.context)
+        recyclerView.layoutManager = lm
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

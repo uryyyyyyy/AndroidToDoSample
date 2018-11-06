@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class TasksAdapter(private val list: List<String>): RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
+class TasksAdapter(private var list: List<String>): RecyclerView.Adapter<TasksAdapter.TaskViewHolder>() {
     override fun getItemCount(): Int {
         return list.size
     }
@@ -20,6 +20,11 @@ class TasksAdapter(private val list: List<String>): RecyclerView.Adapter<TasksAd
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.task_item, parent, false)
         return TaskViewHolder(view)
+    }
+
+    fun setNew(list: List<String>){
+        this.list = list
+        notifyDataSetChanged()
     }
 
     inner class TaskViewHolder(var view: View): RecyclerView.ViewHolder(view)
